@@ -16,3 +16,28 @@ img {
   display: block;
   max-width: 100%;
 }
+
+/* Style for buttons in task-01 */
+.start-btn {
+  font-size: 20px;
+  font-weight: 600;
+  background-color: rgb(93, 158, 93);
+
+  width: 200px;
+  height: 80px;
+  border-radius: 8px;
+}
+
+.start-btn[disabled] {
+  background-color: rgb(195, 195, 195);
+}
+
+.stop-btn {
+  font-size: 20px;
+  font-weight: 600;
+  background-color: rgb(255, 83, 83);
+
+  width: 200px;
+  height: 80px;
+  border-radius: 8px;
+}
