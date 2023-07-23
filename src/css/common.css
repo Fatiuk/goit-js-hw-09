@@ -18,7 +18,18 @@ img {
 }
 
 /* Style for buttons in task-01 */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  position: relative;
+}
+
 .start-btn {
+  position: absolute;
+  left: 38%;
+  transform: translate(-50%);
+
   font-size: 20px;
   font-weight: 600;
   background-color: rgb(93, 158, 93);
@@ -33,6 +44,10 @@ img {
 }
 
 .stop-btn {
+  position: absolute;
+  left: 62%;
+  transform: translate(-50%);
+
   font-size: 20px;
   font-weight: 600;
   background-color: rgb(255, 83, 83);
@@ -40,4 +55,71 @@ img {
   width: 200px;
   height: 80px;
   border-radius: 8px;
+}
+
+/* Style for timer in task-02 */
+.container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+#datetime-picker {
+  width: 200px;
+  height: 50px;
+  border: solid 1px black;
+  border-radius: 4px;
+}
+
+#datetime-picker[type='text'] {
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+}
+
+#datetime-picker + button {
+  padding: 0;
+  text-transform: uppercase;
+  border: solid 1px black;
+  border-radius: 12px;
+  width: 50px;
+  height: 50px;
+}
+
+#datetime-picker + button:enabled {
+  box-shadow: 0 0 10px 0 #80cbc4;
+  transition: background-color 500ms linear, box-shadow 500ms linear;
+}
+
+#datetime-picker + button:enabled:hover {
+  cursor: pointer;
+  background-color: rgb(230, 230, 230);
+  box-shadow: 0 0 20px 5px #80cbc4;
+}
+
+#datetime-picker + button:disabled {
+  color: #840101;
+  box-shadow: 0 0 10px 0 #cb8080;
+}
+
+.hidden {
+  display: none;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  column-gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.value {
+  font-weight: 400;
+  font-size: 50px;
 }
