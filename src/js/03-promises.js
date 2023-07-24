@@ -42,7 +42,7 @@ promiseGeneratorForm.addEventListener('submit', event => {
   const amount = parseInt(promiseGeneratorForm.elements.amount.value);
   let position = 0;
 
-  if (delay < 0 && step < 0 && amount < 0) {
+  if (delay < 0 || step < 0 || amount < 0) {
     Notiflix.Notify.warning('⚠️ The form should contain only positive values');
   } else onPromiseGenerator(delay, step, amount, position);
 });
