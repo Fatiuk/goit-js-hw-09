@@ -14,6 +14,9 @@ const hoursValue = document.querySelector('[data-hours]');
 const minutesValue = document.querySelector('[data-minutes]');
 const secondsValue = document.querySelector('[data-seconds]');
 
+// Added userTime
+let userTime = null;
+
 // Additional options for flatpickr
 const options = {
   enableTime: true,
@@ -21,7 +24,8 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
+    userTime = selectedDates[0];
+    console.log(userTime);
     disableStartButton();
   },
 };
@@ -64,7 +68,7 @@ function renderTimeContent(days, hours, minutes, seconds) {
 // Disabled or enabled start button in the timer
 startButton.disabled = true;
 function disableStartButton() {
-  if (Date.now() > Date.parse(`${dataInput.value}`)) {
+  if (Date.now() > userTime) {
     startButton.disabled = true;
     // Additional notifix alert (failure)
     Notiflix.Notify.failure('Please choose a date in the future');
@@ -81,6 +85,8 @@ startButton.addEventListener('click', onCountdownTimer);
 function onCountdownTimer() {
   // Disabled start button in the timer
   startButton.disabled = true;
+  // Disabled dataInput in the timer
+  dataInput.disabled = true;
 
   // Remove start button
   startButton.classList.add('hidden');
@@ -100,7 +106,10 @@ function onCountdownTimer() {
   resetButton.addEventListener('click', onResetTimer);
 
   function onResetTimer() {
+    // Enabled start button in the timer
     startButton.disabled = false;
+    // Enabled dataInput in the timer
+    dataInput.disabled = false;
     clearInterval(tymeId);
     renderTimeContent(0, 0, 0, 0);
     // Additional notifix alert (success)
@@ -116,8 +125,7 @@ function onCountdownTimer() {
   const tymeId = setInterval(() => {
     // Get current and input time difference in milliseconds.
     const currentTime = Date.now();
-    const inputTime = Date.parse(`${dataInput.value}`);
-    const differenceTime = inputTime - currentTime;
+    const differenceTime = userTime - currentTime;
 
     console.log(convertMs(differenceTime));
     // Destructurization result difference time from convertMs
@@ -127,7 +135,10 @@ function onCountdownTimer() {
 
     // Handles timer completion, reset, enabled start button and update button
     if (differenceTime <= 0) {
+      // Enabled start button in the timer
       startButton.disabled = false;
+      // Enabled dataInput in the timer
+      dataInput.disabled = false;
       clearInterval(tymeId);
       renderTimeContent(0, 0, 0, 0);
       // Remove reset button and return start button
